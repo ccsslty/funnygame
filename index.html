@@ -8,7 +8,25 @@
     <meta name="author" content="FunnyGame">
     <title>ZOO BOOM - Fun Animal Matching Puzzle Game | Play Online</title>
     <link rel="canonical" href="https://funnygame.lol/">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Animation library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- AOS (Animate On Scroll) library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <script>
         tailwind.config = {
             theme: {
@@ -21,6 +39,12 @@
                             gray: '#8E8E93',
                             lightgray: '#F2F2F7',
                         }
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif']
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s linear infinite',
                     }
                 }
             }
@@ -28,46 +52,83 @@
     </script>
     <style>
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             color: #333;
             background-color: white;
+            scroll-behavior: smooth;
         }
+        
+        /* Typography Scale */
         h1 {
-            font-size: 2.25rem;
-            line-height: 2.5rem;
+            font-size: 1.875rem; /* 30px on mobile */
+            line-height: 1.2;
             font-weight: 700;
             margin-bottom: 1rem;
         }
+        
         @media (min-width: 768px) {
             h1 {
-                font-size: 3rem;
-                line-height: 1;
+                font-size: 2.25rem; /* 36px on tablets */
+                line-height: 1.1;
             }
         }
+        
+        @media (min-width: 1024px) {
+            h1 {
+                font-size: 2.5rem; /* 40px on desktop */
+            }
+        }
+        
         h2 {
-            font-size: 1.875rem;
-            line-height: 2.25rem;
+            font-size: 1.5rem; /* 24px on mobile */
+            line-height: 1.3;
             font-weight: 700;
             margin-bottom: 0.75rem;
         }
+        
         @media (min-width: 768px) {
             h2 {
-                font-size: 2.25rem;
-                line-height: 2.5rem;
+                font-size: 1.875rem; /* 30px on tablets */
+                line-height: 1.2;
             }
         }
+        
+        @media (min-width: 1024px) {
+            h2 {
+                font-size: 2.25rem; /* 36px on desktop */
+            }
+        }
+        
+        p {
+            font-size: 1rem; /* 16px base */
+            line-height: 1.5;
+        }
+        
+        @media (min-width: 768px) {
+            p {
+                font-size: 1.125rem; /* 18px on larger screens */
+            }
+        }
+        
         .section {
             padding-top: 3rem;
             padding-bottom: 3rem;
-            padding-left: 1rem;
-            padding-right: 1rem;
         }
+        
         @media (min-width: 768px) {
             .section {
                 padding-top: 4rem;
                 padding-bottom: 4rem;
             }
         }
+        
+        @media (min-width: 1024px) {
+            .section {
+                padding-top: 5rem;
+                padding-bottom: 5rem;
+            }
+        }
+        
         .container {
             margin-left: auto;
             margin-right: auto;
@@ -75,18 +136,22 @@
             padding-left: 1rem;
             padding-right: 1rem;
         }
+        
         @media (min-width: 640px) {
             .container {
                 padding-left: 1.5rem;
                 padding-right: 1.5rem;
             }
         }
+        
         @media (min-width: 1024px) {
             .container {
                 padding-left: 2rem;
                 padding-right: 2rem;
             }
         }
+        
+        /* Button Styles with Hover Effects */
         .btn {
             padding-left: 1.5rem;
             padding-right: 1.5rem;
@@ -94,31 +159,56 @@
             padding-bottom: 0.75rem;
             border-radius: 0.5rem;
             font-weight: 500;
-            transition-property: all;
-            transition-duration: 200ms;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+        
         .btn-primary {
             background-color: #007AFF;
             color: white;
         }
+        
         .btn-primary:hover {
-            background-color: #0060D1;
+            background-color: #0062CC;
         }
+        
+        /* Star Rating Style */
         .star {
             color: #FCD34D;
-            font-size: 1.5rem;
-            line-height: 2rem;
+            font-size: 1.25rem;
         }
-        /* 添加游戏容器的纵横比样式 */
+        
+        /* Game container aspect ratio */
         .aspect-ratio-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 纵横比 */
+            padding-bottom: 56.25%; /* 16:9 ratio */
             overflow: hidden;
             border-radius: 0.75rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
             background-color: black;
+            transition: all 0.3s ease;
         }
+        
+        .aspect-ratio-container:hover {
+            transform: scale(1.01);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
         .aspect-ratio-container iframe {
             position: absolute;
             top: 0;
@@ -127,10 +217,18 @@
             height: 100%;
             border: 0;
         }
-    </style>
-    
-    <!-- 添加Lightbox样式 -->
-    <style>
+        
+        /* Card Hover Effects */
+        .hover-card {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Lightbox Styles */
         .lightbox {
             display: none;
             position: fixed;
@@ -143,16 +241,25 @@
             justify-content: center;
             align-items: center;
             backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         .lightbox.active {
             display: flex;
+            opacity: 1;
         }
         
         .lightbox-content {
             position: relative;
             max-width: 90%;
             max-height: 90%;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
         }
         
         .lightbox-image {
@@ -178,14 +285,17 @@
             background: rgba(0, 0, 0, 0.5);
             border-radius: 50%;
             transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .lightbox-close:hover {
             background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(90deg);
         }
         
-        /* 评论轮播样式 */
+        /* Review Carousel Styles */
         .review-carousel {
             position: relative;
             overflow: hidden;
@@ -230,12 +340,16 @@
             background-color: #D1D5DB;
             margin: 0 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
         
         .carousel-indicator.active {
             background-color: #007AFF;
             transform: scale(1.2);
+        }
+        
+        .carousel-indicator:hover {
+            background-color: #93C5FD;
         }
         
         .carousel-control {
@@ -252,974 +366,1008 @@
             justify-content: center;
             cursor: pointer;
             opacity: 0.7;
-            transition: opacity 0.3s ease;
+            transition: all 0.3s ease;
             z-index: 10;
         }
         
         .carousel-control:hover {
             opacity: 1;
+            transform: translateY(-50%) scale(1.1);
         }
         
         .carousel-control.prev {
-            left: -10px;
+            left: 10px;
         }
         
         .carousel-control.next {
-            right: -10px;
+            right: 10px;
+        }
+        
+        /* FAQ Styles */
+        .faq-item {
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            color: #007AFF;
+        }
+        
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.3s ease, margin 0.3s ease;
+            opacity: 0;
+            margin-top: 0;
+        }
+        
+        .faq-answer.show {
+            max-height: 1000px;
+            opacity: 1;
+            margin-top: 1rem;
+        }
+        
+        /* Social Media Icons */
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px) scale(1.1);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 75%;
+            max-width: 300px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.open {
+            right: 0;
+        }
+        
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .menu-overlay.open {
+            display: block;
+            opacity: 1;
+        }
+        
+        /* Animations for content sections */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Image lazy loading style */
+        .lazy-image {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .lazy-image.loaded {
+            opacity: 1;
         }
     </style>
 </head>
-<body>
-    <!-- Header Section -->
-    <header class="bg-apple-lightgray py-4">
-        <div class="container mx-auto flex justify-between items-center">
+<body class="font-poppins">
+    <!-- Mobile Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu py-8 px-6" id="mobileMenu">
+        <div class="flex justify-between items-center mb-8">
             <div class="flex items-center">
-                <svg width="40" height="40" viewBox="0 0 40 40" class="h-10 w-10 mr-2" aria-label="ZOO BOOM Logo">
-                    <!-- Definitions for gradients -->
+                <svg width="32" height="32" viewBox="0 0 40 40" aria-label="ZOO BOOM Logo">
+                    <!-- Using same SVG definition as main logo but smaller -->
                     <defs>
-                        <radialGradient id="backgroundGradient" cx="50%" cy="50%" r="70%" fx="30%" fy="30%">
+                        <radialGradient id="backgroundGradientMobile" cx="50%" cy="50%" r="70%" fx="30%" fy="30%">
                             <stop offset="0%" stop-color="#4A7FFF" />
                             <stop offset="70%" stop-color="#007AFF" />
                             <stop offset="100%" stop-color="#0056B3" />
                         </radialGradient>
-                        <radialGradient id="faceGradient" cx="50%" cy="50%" r="70%" fx="30%" fy="30%">
+                        <radialGradient id="faceGradientMobile" cx="50%" cy="50%" r="70%" fx="30%" fy="30%">
                             <stop offset="0%" stop-color="#FFF6E5" />
                             <stop offset="100%" stop-color="#FFE0B2" />
                         </radialGradient>
-                        <linearGradient id="rayGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <linearGradient id="rayGradientMobile" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" stop-color="#FF9D2F" />
                             <stop offset="100%" stop-color="#FF5722" />
                         </linearGradient>
                     </defs>
-                    
-                    <!-- Background circle with glowing effect -->
-                    <circle cx="20" cy="20" r="20" fill="url(#backgroundGradient)" />
+                    <circle cx="20" cy="20" r="20" fill="url(#backgroundGradientMobile)" />
                     <circle cx="20" cy="20" r="19" fill="none" stroke="#80BDFF" stroke-width="1" opacity="0.7" />
-                    
-                    <!-- Animal face (cute lion) with gradient -->
-                    <circle cx="20" cy="20" r="13" fill="url(#faceGradient)" />
-                    
-                    <!-- Eyes -->
+                    <circle cx="20" cy="20" r="13" fill="url(#faceGradientMobile)" />
                     <circle cx="15" cy="17" r="2.5" fill="#5D4037" />
                     <circle cx="25" cy="17" r="2.5" fill="#5D4037" />
                     <circle cx="15" cy="16" r="0.8" fill="white" />
                     <circle cx="25" cy="16" r="0.8" fill="white" />
-                    
-                    <!-- Nose -->
                     <circle cx="20" cy="21" r="2" fill="#FF5722" />
-                    
-                    <!-- Smile -->
                     <path d="M15,24 Q20,28 25,24" fill="none" stroke="#5D4037" stroke-width="1.5" stroke-linecap="round" />
-                    
-                    <!-- Mane/explosion rays with gradient -->
-                    <path d="M8,9 L12,14" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
-                    <path d="M5,16 L11,18" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
-                    <path d="M6,24 L12,23" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
-                    <path d="M11,31 L14,26" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
-                    <path d="M20,35 L20,29" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
-                    <path d="M29,31 L26,26" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
-                    <path d="M34,24 L28,23" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
-                    <path d="M35,16 L29,18" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
-                    <path d="M32,9 L28,14" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
-                    <path d="M20,5 L20,11" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
-                    
-                    <!-- Star burst effect -->
-                    <circle cx="10" cy="10" r="1" fill="white" />
-                    <circle cx="30" cy="12" r="1" fill="white" />
-                    <circle cx="7" cy="26" r="1" fill="white" />
-                    <circle cx="28" cy="30" r="1" fill="white" />
-                    
-                    <!-- Additional shine effects -->
-                    <circle cx="14" cy="11" r="0.6" fill="white" opacity="0.8" />
-                    <circle cx="26" cy="9" r="0.6" fill="white" opacity="0.8" />
-                    <circle cx="33" cy="22" r="0.6" fill="white" opacity="0.8" />
-                    <circle cx="12" cy="33" r="0.6" fill="white" opacity="0.8" />
+                    <!-- Simplified rays for mobile -->
+                    <path d="M8,9 L12,14" stroke="url(#rayGradientMobile)" stroke-width="2" stroke-linecap="round" />
+                    <path d="M5,16 L11,18" stroke="url(#rayGradientMobile)" stroke-width="2" stroke-linecap="round" />
+                    <path d="M6,24 L12,23" stroke="url(#rayGradientMobile)" stroke-width="2" stroke-linecap="round" />
+                    <path d="M20,5 L20,11" stroke="url(#rayGradientMobile)" stroke-width="2" stroke-linecap="round" />
+                    <path d="M32,9 L28,14" stroke="url(#rayGradientMobile)" stroke-width="2" stroke-linecap="round" />
+                    <path d="M35,16 L29,18" stroke="url(#rayGradientMobile)" stroke-width="2" stroke-linecap="round" />
                 </svg>
-                <span class="font-bold text-xl text-apple-blue">FunnyGame.lol</span>
+                <span class="font-bold text-lg text-apple-blue ml-2">FunnyGame</span>
             </div>
-            <nav class="hidden md:block">
-                <ul class="flex space-x-6">
-                    <li><a href="#about" class="hover:text-apple-blue transition-colors text-[22px]">About</a></li>
-                    <li><a href="#how-to-play" class="hover:text-apple-blue transition-colors text-[22px]">How to Play</a></li>
-                    <li><a href="#reviews" class="hover:text-apple-blue transition-colors text-[22px]">Reviews</a></li>
-                </ul>
-            </nav>
-            <button class="md:hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+            <button class="text-gray-500 hover:text-apple-blue transition-colors" id="closeMobileMenu">
+                <i class="fas fa-times text-2xl"></i>
             </button>
+        </div>
+        <nav>
+            <ul class="space-y-4">
+                <li><a href="#about" class="block py-2 px-4 hover:bg-apple-lightgray rounded-lg transition-colors text-lg">About</a></li>
+                <li><a href="#how-to-play" class="block py-2 px-4 hover:bg-apple-lightgray rounded-lg transition-colors text-lg">How to Play</a></li>
+                <li><a href="#reviews" class="block py-2 px-4 hover:bg-apple-lightgray rounded-lg transition-colors text-lg">Reviews</a></li>
+                <li><a href="#faq" class="block py-2 px-4 hover:bg-apple-lightgray rounded-lg transition-colors text-lg">FAQ</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Header Section -->
+    <header class="bg-apple-lightgray py-4 sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <svg width="40" height="40" viewBox="0 0 40 40" class="h-10 w-10 mr-2 animate-bounce-slow" aria-label="ZOO BOOM Logo">
+                        <!-- Definitions for gradients -->
+                        <defs>
+                            <radialGradient id="backgroundGradient" cx="50%" cy="50%" r="70%" fx="30%" fy="30%">
+                                <stop offset="0%" stop-color="#4A7FFF" />
+                                <stop offset="70%" stop-color="#007AFF" />
+                                <stop offset="100%" stop-color="#0056B3" />
+                            </radialGradient>
+                            <radialGradient id="faceGradient" cx="50%" cy="50%" r="70%" fx="30%" fy="30%">
+                                <stop offset="0%" stop-color="#FFF6E5" />
+                                <stop offset="100%" stop-color="#FFE0B2" />
+                            </radialGradient>
+                            <linearGradient id="rayGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#FF9D2F" />
+                                <stop offset="100%" stop-color="#FF5722" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Background circle with glowing effect -->
+                        <circle cx="20" cy="20" r="20" fill="url(#backgroundGradient)" />
+                        <circle cx="20" cy="20" r="19" fill="none" stroke="#80BDFF" stroke-width="1" opacity="0.7" />
+                        
+                        <!-- Animal face (cute lion) with gradient -->
+                        <circle cx="20" cy="20" r="13" fill="url(#faceGradient)" />
+                        
+                        <!-- Eyes -->
+                        <circle cx="15" cy="17" r="2.5" fill="#5D4037" />
+                        <circle cx="25" cy="17" r="2.5" fill="#5D4037" />
+                        <circle cx="15" cy="16" r="0.8" fill="white" />
+                        <circle cx="25" cy="16" r="0.8" fill="white" />
+                        
+                        <!-- Nose -->
+                        <circle cx="20" cy="21" r="2" fill="#FF5722" />
+                        
+                        <!-- Smile -->
+                        <path d="M15,24 Q20,28 25,24" fill="none" stroke="#5D4037" stroke-width="1.5" stroke-linecap="round" />
+                        
+                        <!-- Mane/explosion rays with gradient -->
+                        <path d="M8,9 L12,14" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
+                        <path d="M5,16 L11,18" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
+                        <path d="M6,24 L12,23" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
+                        <path d="M11,31 L14,26" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
+                        <path d="M20,35 L20,29" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
+                        <path d="M29,31 L26,26" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
+                        <path d="M34,24 L28,23" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
+                        <path d="M35,16 L29,18" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
+                        <path d="M32,9 L28,14" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
+                        <path d="M20,5 L20,11" stroke="url(#rayGradient)" stroke-width="2" stroke-linecap="round" />
+                        
+                        <!-- Star burst effect -->
+                        <circle cx="10" cy="10" r="1" fill="white" />
+                        <circle cx="30" cy="12" r="1" fill="white" />
+                        <circle cx="7" cy="26" r="1" fill="white" />
+                        <circle cx="28" cy="30" r="1" fill="white" />
+                        
+                        <!-- Additional shine effects -->
+                        <circle cx="14" cy="11" r="0.6" fill="white" opacity="0.8" />
+                        <circle cx="26" cy="9" r="0.6" fill="white" opacity="0.8" />
+                        <circle cx="33" cy="22" r="0.6" fill="white" opacity="0.8" />
+                        <circle cx="12" cy="33" r="0.6" fill="white" opacity="0.8" />
+                    </svg>
+                    <span class="font-bold text-xl md:text-2xl text-apple-blue transition-colors hover:text-blue-700">
+                        <a href="/" class="no-underline hover:underline">FunnyGame.lol</a>
+                    </span>
+                </div>
+                
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-6">
+                        <li><a href="#about" class="text-lg hover:text-apple-blue transition-colors hover:underline">About</a></li>
+                        <li><a href="#how-to-play" class="text-lg hover:text-apple-blue transition-colors hover:underline">How to Play</a></li>
+                        <li><a href="#reviews" class="text-lg hover:text-apple-blue transition-colors hover:underline">Reviews</a></li>
+                        <li><a href="#faq" class="text-lg hover:text-apple-blue transition-colors hover:underline">FAQ</a></li>
+                    </ul>
+                </nav>
+                
+                <button class="md:hidden text-gray-600 hover:text-apple-blue transition-colors" id="openMobileMenu">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
         </div>
     </header>
 
     <!-- First Screen: Game Display -->
-    <section class="section bg-white" id="game-display">
+    <section class="section bg-white pt-6 md:pt-12" id="game-display">
         <div class="container mx-auto">
-            <!-- 使用包装容器确保对齐 -->
-            <div class="max-w-6xl mx-auto">
-                <!-- 游戏区域放在最上方 -->
+            <!-- Game container with heading -->
+            <div class="max-w-6xl mx-auto" data-aos="fade-up" data-aos-duration="800">
+                <!-- Game area at the top -->
                 <div class="game-container relative mb-8">
                     <div class="w-full lg:w-5/6 xl:w-full mx-auto">
-                <div class="aspect-ratio-container">
-                    <iframe src="https://games.cdn.famobi.com/html5games/z/zoo-boom/cd0be843/?fg_domain=play.famobi.com&fg_aid=A1000-111&fg_uid=5e772ebe-9e0a-4cd3-adcf-bba662f35535&fg_pid=e37ab3ce-88cd-4438-9b9c-a37df5d33736&fg_beat=560&original_ref=https%3A%2F%2Fplay.famobi.com%2Fzoo-boom" 
-                            allowfullscreen></iframe>
+                        <div class="aspect-ratio-container">
+                            <iframe src="https://games.cdn.famobi.com/html5games/z/zoo-boom/cd0be843/?fg_domain=play.famobi.com&fg_aid=A1000-111&fg_uid=5e772ebe-9e0a-4cd3-adcf-bba662f35535&fg_pid=e37ab3ce-88cd-4438-9b9c-a37df5d33736&fg_beat=560&original_ref=https%3A%2F%2Fplay.famobi.com%2Fzoo-boom" 
+                                allowfullscreen></iframe>
                         </div>
+                    </div>
                 </div>
-            </div>
-            
-                <!-- 标题和简介与游戏区域左对齐 -->
-                <div class="text-left mb-8 max-w-3xl">
-                    <h1 class="text-[48px] font-bold mb-4 text-[#007AFD]">ZOO BOOM</h1>
-                    <p class="text-[30px] mb-6">Match colorful zoo animals in this exciting puzzle adventure that will test your skills and reflexes!</p>
+                
+                <!-- Title and intro aligned with game area -->
+                <div class="text-left mb-8 max-w-3xl" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-apple-blue">
+                        ZOO BOOM <i class="fas fa-paw text-orange-400 text-3xl md:text-4xl lg:text-5xl"></i>
+                    </h1>
+                    <p class="text-lg md:text-xl lg:text-2xl mb-6">
+                        Match colorful zoo animals in this exciting puzzle adventure that will test your skills and reflexes!
+                    </p>
+                    <a href="#how-to-play" class="btn btn-primary inline-flex items-center gap-2">
+                        <i class="fas fa-play-circle"></i> Learn How To Play
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Second Screen: About ZOO BOOM -->
-    <section class="section bg-apple-lightgray" id="about">
+    <section class="section bg-apple-lightgray py-16" id="about">
         <div class="container mx-auto">
-            <!-- 标题和介绍文字放在顶部 -->
-            <div class="mb-8 text-center">
-                <h2 class="text-[48px] font-bold mb-4 text-[#007AFD]">What is ZOO BOOM?</h2>
-                <p class="mb-3 max-w-4xl mx-auto text-[30px]">ZOO BOOM is an addictive puzzle game where you match colorful zoo animals to score points and progress through challenging levels.</p>
-                <p class="mb-3 max-w-4xl mx-auto text-[30px]">With vibrant graphics and engaging gameplay, it's perfect for players of all ages!</p>
-                <p class="mb-6 max-w-4xl mx-auto text-[30px]">The game features dozens of unique levels, special power-ups, and cute animal characters that will keep you entertained for hours.</p>
-            </div>
-            
-            <!-- 游戏截图一行显示3张 -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                <div>
-                    <img src="https://imgs.crazygames.com/zoo-boom_16x9/20231113142043/zoo-boom_16x9-cover?metadata=none&quality=40&width=1200&height=630&fit=crop" alt="ZOO BOOM Game Cover" class="rounded-xl shadow-xl w-full h-72 object-cover cursor-pointer game-screenshot" onclick="openLightbox(this.src, this.alt)">
-                </div>
-                <div>
-                    <img src="https://www.bubbleshooter.net/img/match-9-animals-for-zoo-boom.jpg" alt="ZOO BOOM Matching Gameplay" class="rounded-xl shadow-xl w-full h-72 object-cover cursor-pointer game-screenshot" onclick="openLightbox(this.src, this.alt)">
-                </div>
-                <div>
-                    <img src="https://assets.infinitygamingtable.com/assets/ScreenShots/227/ZooBoom_Screens_1280x2560_LandscapeDesktop_02__FitMaxWzY0MCwzNjBd.jpg" alt="ZOO BOOM Advanced Gameplay" class="rounded-xl shadow-xl w-full h-72 object-cover cursor-pointer game-screenshot" onclick="openLightbox(this.src, this.alt)">
+            <!-- Title and introduction text -->
+            <div class="mb-12 text-center" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-apple-blue">
+                    <i class="fas fa-info-circle mr-2"></i>What is ZOO BOOM?
+                </h2>
+                <div class="max-w-4xl mx-auto space-y-4">
+                    <p class="text-lg md:text-xl">
+                        ZOO BOOM is an addictive puzzle game where you match colorful zoo animals to score points and progress through challenging levels.
+                    </p>
+                    <p class="text-lg md:text-xl">
+                        With vibrant graphics and engaging gameplay, it's perfect for players of all ages!
+                    </p>
+                    <p class="text-lg md:text-xl">
+                        The game features dozens of unique levels, special power-ups, and cute animal characters that will keep you entertained for hours.
+                    </p>
                 </div>
             </div>
             
-            <!-- 游戏特性放在图片下方 -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div class="bg-white p-4 rounded-lg shadow-md">
-                            <div class="text-apple-blue text-3xl mb-2">
-                        <!-- Fast-Paced Action: Racing Cheetah Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" viewBox="0 0 64 64" fill="none">
-                            <circle cx="32" cy="32" r="28" fill="white" stroke="#007AFF" stroke-width="2"/>
-                            <!-- Cheetah face -->
-                            <circle cx="32" cy="28" r="12" fill="#FFE0B2"/>
-                            <circle cx="28" cy="25" r="2" fill="#5D4037"/>
-                            <circle cx="36" cy="25" r="2" fill="#5D4037"/>
-                            
-                            <!-- Cheetah spots -->
-                            <circle cx="26" cy="22" r="1.5" fill="#FF9800"/>
-                            <circle cx="38" cy="22" r="1.5" fill="#FF9800"/>
-                            <circle cx="30" cy="20" r="1.5" fill="#FF9800"/>
-                            <circle cx="34" cy="20" r="1.5" fill="#FF9800"/>
-                            <circle cx="32" cy="24" r="1" fill="#FF9800"/>
-                            
-                            <!-- Speed motion lines -->
-                            <path d="M14,32 Q24,36 32,36 Q40,36 50,32" stroke="#007AFF" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M16,24 Q24,28 32,28 Q40,28 48,24" stroke="#007AFF" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M18,40 Q24,44 32,44 Q40,44 46,40" stroke="#007AFF" stroke-width="2" stroke-linecap="round"/>
-                            
-                            <!-- Speedometer needle -->
-                            <path d="M32,32 L40,24" stroke="#FF3B30" stroke-width="2" stroke-linecap="round"/>
-                            <circle cx="32" cy="32" r="2" fill="#FF3B30"/>
-                                </svg>
-                            </div>
-                    <h3 class="font-bold mb-1 text-center text-[30px]">Fast-Paced Action</h3>
-                    <p class="text-[27px] text-center">Quick thinking and reflexes required!</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-lg shadow-md">
-                            <div class="text-apple-green text-3xl mb-2">
-                        <!-- Increasing Difficulty: Stacked Animal Puzzle Levels -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" viewBox="0 0 64 64" fill="none">
-                            <!-- Level 1 (easiest) -->
-                            <rect x="12" y="44" width="40" height="10" rx="2" fill="#E3F2FD" stroke="#34C759" stroke-width="2"/>
-                            <circle cx="20" cy="49" r="3" fill="#34C759"/>
-                            <circle cx="32" cy="49" r="3" fill="#34C759" opacity="0.6"/>
-                            
-                            <!-- Level 2 (medium) -->
-                            <rect x="16" y="32" width="32" height="10" rx="2" fill="#E3F2FD" stroke="#34C759" stroke-width="2"/>
-                            <circle cx="24" cy="37" r="3" fill="#34C759"/>
-                            <circle cx="34" cy="37" r="3" fill="#34C759"/>
-                            <circle cx="44" cy="37" r="3" fill="#34C759" opacity="0.6"/>
-                            
-                            <!-- Level 3 (hardest) -->
-                            <rect x="20" y="20" width="24" height="10" rx="2" fill="#E3F2FD" stroke="#34C759" stroke-width="2"/>
-                            <circle cx="26" cy="25" r="3" fill="#34C759"/>
-                            <circle cx="34" cy="25" r="3" fill="#34C759"/>
-                            <circle cx="42" cy="25" r="3" fill="#34C759"/>
-                            
-                            <!-- Crown at top -->
-                            <path d="M26,14 L32,10 L38,14 L36,18 L28,18 L26,14Z" fill="#FFC107" stroke="#34C759" stroke-width="1"/>
-                                </svg>
-                            </div>
-                    <h3 class="font-bold mb-1 text-center text-[30px]">Increasing Difficulty</h3>
-                    <p class="text-[27px] text-center">New challenges as you progress!</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-lg shadow-md">
-                            <div class="text-apple-red text-3xl mb-2">
-                        <!-- Quick Sessions: Animal-themed Clock -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" viewBox="0 0 64 64" fill="none">
-                            <!-- Clock face -->
-                            <circle cx="32" cy="32" r="22" fill="white" stroke="#FF3B30" stroke-width="2"/>
-                            
-                            <!-- Clock numerals -->
-                            <circle cx="32" cy="14" r="2" fill="#FF3B30"/>
-                            <circle cx="50" cy="32" r="2" fill="#FF3B30"/>
-                            <circle cx="32" cy="50" r="2" fill="#FF3B30"/>
-                            <circle cx="14" cy="32" r="2" fill="#FF3B30"/>
-                            
-                            <!-- Clock hands -->
-                            <path d="M32,32 L32,18" stroke="#FF3B30" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M32,32 L42,38" stroke="#FF3B30" stroke-width="2" stroke-linecap="round"/>
-                            <circle cx="32" cy="32" r="3" fill="#FF3B30"/>
-                            
-                            <!-- Animal ears on clock -->
-                            <path d="M26,10 Q20,5 20,12" stroke="#FF3B30" stroke-width="2" fill="#FFCDD2"/>
-                            <path d="M38,10 Q44,5 44,12" stroke="#FF3B30" stroke-width="2" fill="#FFCDD2"/>
-                            
-                            <!-- Paw prints -->
-                            <path d="M54,24 Q56,23 55,26 Q57,25 56,28 Q54,27 53,30 Q51,27 50,28" fill="#FF3B30" opacity="0.6"/>
-                            <path d="M10,40 Q8,39 9,42 Q7,41 8,44 Q10,43 11,46 Q13,43 14,44" fill="#FF3B30" opacity="0.6"/>
-                                </svg>
-                            </div>
-                    <h3 class="font-bold mb-1 text-center text-[30px]">Quick Sessions</h3>
-                    <p class="text-[27px] text-center">Perfect for short gaming breaks!</p>
-                        </div>
-                        <div class="bg-white p-4 rounded-lg shadow-md">
-                            <div class="text-apple-blue text-3xl mb-2">
-                        <!-- Special Power-ups: Magic Wand with Animal Elements -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" viewBox="0 0 64 64" fill="none">
-                            <!-- Magic wand -->
-                            <path d="M20,44 L44,20" stroke="#007AFF" stroke-width="3" stroke-linecap="round"/>
-                            
-                            <!-- Star tip -->
-                            <path d="M48,16 L50,14 L52,16 L50,18 L48,16Z" fill="#FFC107" stroke="#007AFF"/>
-                            <path d="M44,20 L46,18 L48,20 L46,22 L44,20Z" fill="#FFC107" stroke="#007AFF"/>
-                            
-                            <!-- Magic sparkles -->
-                            <circle cx="36" cy="28" r="1.5" fill="#007AFF"/>
-                            <circle cx="30" cy="34" r="1.5" fill="#007AFF"/>
-                            <circle cx="26" cy="38" r="1" fill="#007AFF"/>
-                            
-                            <!-- Power burst -->
-                            <path d="M16,48 L10,54" stroke="#007AFF" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M14,52 L10,48" stroke="#007AFF" stroke-width="2" stroke-linecap="round"/>
-                            
-                            <!-- Animal paw outline -->
-                            <path d="M14,48 Q12,46 14,44 Q16,42 18,44 Q20,42 22,44 Q24,46 22,48 Q24,50 22,52 Q20,54 18,52 Q16,54 14,52 Q12,50 14,48Z" fill="#E3F2FD" stroke="#007AFF" stroke-width="1.5"/>
-                            
-                            <!-- Paw pad centers -->
-                            <circle cx="18" cy="46" r="1.5" fill="#007AFF" opacity="0.7"/>
-                            <circle cx="14" cy="46" r="1.5" fill="#007AFF" opacity="0.7"/>
-                            <circle cx="22" cy="46" r="1.5" fill="#007AFF" opacity="0.7"/>
-                            <circle cx="18" cy="50" r="2" fill="#007AFF" opacity="0.8"/>
-                                </svg>
-                            </div>
-                    <h3 class="font-bold mb-1 text-center text-[30px]">Special Power-ups</h3>
-                    <p class="text-[27px] text-center">Unlock abilities to blast through levels!</p>
+            <!-- Game screenshots with lightbox functionality -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="hover-card rounded-xl overflow-hidden">
+                        <img 
+                            src="https://imgs.crazygames.com/zoo-boom_16x9/20231113142043/zoo-boom_16x9-cover?metadata=none&quality=40&width=1200&height=630&fit=crop" 
+                            alt="ZOO BOOM Game Cover" 
+                            class="lazy-image w-full h-72 object-cover cursor-pointer game-screenshot transition-transform hover:scale-105" 
+                            onclick="openLightbox(this.src, this.alt)"
+                            loading="lazy"
+                        >
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="hover-card rounded-xl overflow-hidden">
+                        <img 
+                            src="https://www.bubbleshooter.net/img/match-9-animals-for-zoo-boom.jpg" 
+                            alt="ZOO BOOM Matching Gameplay" 
+                            class="lazy-image w-full h-72 object-cover cursor-pointer game-screenshot transition-transform hover:scale-105" 
+                            onclick="openLightbox(this.src, this.alt)"
+                            loading="lazy"
+                        >
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div class="hover-card rounded-xl overflow-hidden">
+                        <img 
+                            src="https://assets.infinitygamingtable.com/assets/ScreenShots/227/ZooBoom_Screens_1280x2560_LandscapeDesktop_02__FitMaxWzY0MCwzNjBd.jpg" 
+                            alt="ZOO BOOM Advanced Gameplay" 
+                            class="lazy-image w-full h-72 object-cover cursor-pointer game-screenshot transition-transform hover:scale-105" 
+                            onclick="openLightbox(this.src, this.alt)"
+                            loading="lazy"
+                        >
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Game features with icons -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="text-apple-blue text-3xl mb-4 flex justify-center">
+                        <i class="fas fa-bolt text-4xl bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center"></i>
+                    </div>
+                    <h3 class="font-bold mb-2 text-center text-xl md:text-2xl">Fast-Paced Action</h3>
+                    <p class="text-base md:text-lg text-center text-gray-700">Quick thinking and reflexes required for exciting gameplay!</p>
+                </div>
+                
+                <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="text-apple-green text-3xl mb-4 flex justify-center">
+                        <i class="fas fa-chart-line text-4xl bg-green-100 w-16 h-16 rounded-full flex items-center justify-center"></i>
+                    </div>
+                    <h3 class="font-bold mb-2 text-center text-xl md:text-2xl">Increasing Difficulty</h3>
+                    <p class="text-base md:text-lg text-center text-gray-700">New challenges as you progress through the levels!</p>
+                </div>
+                
+                <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div class="text-apple-red text-3xl mb-4 flex justify-center">
+                        <i class="fas fa-clock text-4xl bg-red-100 w-16 h-16 rounded-full flex items-center justify-center"></i>
+                    </div>
+                    <h3 class="font-bold mb-2 text-center text-xl md:text-2xl">Quick Sessions</h3>
+                    <p class="text-base md:text-lg text-center text-gray-700">Perfect for short gaming breaks during your day!</p>
+                </div>
+                
+                <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                    <div class="text-apple-blue text-3xl mb-4 flex justify-center">
+                        <i class="fas fa-magic text-4xl bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center"></i>
+                    </div>
+                    <h3 class="font-bold mb-2 text-center text-xl md:text-2xl">Special Power-ups</h3>
+                    <p class="text-base md:text-lg text-center text-gray-700">Unlock abilities to blast through challenging levels!</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Third Screen: How to Play -->
-    <section class="section bg-white" id="how-to-play">
+    <section class="section bg-white py-16" id="how-to-play">
         <div class="container mx-auto">
-            <h2 class="text-[48px] font-bold mb-6 text-center text-[#007AFD]">How to Play ZOO BOOM</h2>
-            <p class="text-[30px] text-center mb-12 max-w-3xl mx-auto">Master these simple steps to become a ZOO BOOM champion!</p>
+            <div class="text-center mb-12" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-apple-blue">
+                    <i class="fas fa-gamepad mr-2"></i>How to Play ZOO BOOM
+                </h2>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto">
+                    Master these simple steps to become a ZOO BOOM champion!
+                </p>
+            </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-apple-lightgray p-6 rounded-xl shadow-md text-center">
-                    <div class="bg-apple-blue inline-flex items-center justify-center w-16 h-16 rounded-full mb-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="hover-card bg-apple-lightgray p-8 rounded-xl shadow-md text-center transition-all" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="bg-apple-blue inline-flex items-center justify-center w-16 h-16 rounded-full mb-6 transform transition-transform hover:rotate-12 hover:scale-110">
                         <span class="text-white text-2xl font-bold">1</span>
                     </div>
-                    <h3 class="font-bold mb-3 text-[30px]">Match Animals</h3>
-                    <p class="text-[27px]">Connect three or more identical animals to make them disappear from the board and earn points.</p>
+                    <h3 class="font-bold mb-4 text-xl md:text-2xl">Match Animals</h3>
+                    <p class="text-base md:text-lg text-gray-700">
+                        Connect three or more identical animals to make them disappear from the board and earn points.
+                    </p>
+                    <div class="mt-6 text-5xl text-center text-apple-blue opacity-30">
+                        <i class="fas fa-paw"></i>
+                        <i class="fas fa-paw"></i>
+                        <i class="fas fa-paw"></i>
+                    </div>
                 </div>
                 
-                <div class="bg-apple-lightgray p-6 rounded-xl shadow-md text-center">
-                    <div class="bg-apple-blue inline-flex items-center justify-center w-16 h-16 rounded-full mb-4">
+                <div class="hover-card bg-apple-lightgray p-8 rounded-xl shadow-md text-center transition-all" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="bg-apple-blue inline-flex items-center justify-center w-16 h-16 rounded-full mb-6 transform transition-transform hover:rotate-12 hover:scale-110">
                         <span class="text-white text-2xl font-bold">2</span>
                     </div>
-                    <h3 class="font-bold mb-3 text-[30px]">Use Power-ups</h3>
-                    <p class="text-[27px]">Create special combinations to unlock powerful boosters that can clear multiple animals at once.</p>
+                    <h3 class="font-bold mb-4 text-xl md:text-2xl">Use Power-ups</h3>
+                    <p class="text-base md:text-lg text-gray-700">
+                        Create special combinations to unlock powerful boosters that can clear multiple animals at once.
+                    </p>
+                    <div class="mt-6 text-4xl text-center">
+                        <i class="fas fa-rocket text-red-500"></i>
+                        <i class="fas fa-bomb text-gray-700"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
                 </div>
                 
-                <div class="bg-apple-lightgray p-6 rounded-xl shadow-md text-center">
-                    <div class="bg-apple-blue inline-flex items-center justify-center w-16 h-16 rounded-full mb-4">
+                <div class="hover-card bg-apple-lightgray p-8 rounded-xl shadow-md text-center transition-all" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div class="bg-apple-blue inline-flex items-center justify-center w-16 h-16 rounded-full mb-6 transform transition-transform hover:rotate-12 hover:scale-110">
                         <span class="text-white text-2xl font-bold">3</span>
                     </div>
-                    <h3 class="font-bold mb-3 text-[30px]">Complete Objectives</h3>
-                    <p class="text-[27px]">Beat each level by achieving the specific goals before your moves run out to progress further.</p>
+                    <h3 class="font-bold mb-4 text-xl md:text-2xl">Complete Objectives</h3>
+                    <p class="text-base md:text-lg text-gray-700">
+                        Beat each level by achieving the specific goals before your moves run out to progress further.
+                    </p>
+                    <div class="mt-6 text-4xl text-center">
+                        <i class="fas fa-trophy text-yellow-500"></i>
+                        <i class="fas fa-flag-checkered text-gray-800"></i>
+                        <i class="fas fa-medal text-yellow-600"></i>
+                    </div>
                 </div>
             </div>
             
-            <!-- SEO Content Section -->
-            <section class="section bg-apple-lightgray" id="zoo-boom-guide">
-                <div class="container mx-auto">
-                    <h1 class="text-[48px] font-bold mb-6 text-center text-[#007AFD]">ZOO BOOM - The Ultimate Animal Matching Puzzle Adventure</h1>
+            <!-- Game guide content with improved typography -->
+            <div class="bg-apple-lightgray rounded-2xl p-6 md:p-10 shadow-lg" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-apple-blue text-center">
+                    ZOO BOOM - The Ultimate Animal Matching Puzzle Adventure
+                </h2>
+                
+                <!-- What is ZOO BOOM Section -->
+                <div class="mb-10">
+                    <h3 class="text-xl md:text-2xl lg:text-3xl font-bold mb-6 text-apple-blue">
+                        <i class="fas fa-question-circle mr-2"></i>What is ZOO BOOM?
+                    </h3>
                     
-                    <!-- What is ZOO BOOM Section -->
-                    <div class="mb-12">
-                        <h2 class="text-[40px] font-bold mb-4 text-[#007AFD]">What is ZOO BOOM?</h2>
+                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-md mb-8">
+                        <h4 class="text-lg md:text-xl lg:text-2xl font-semibold mb-4 text-apple-blue">Game Overview</h4>
+                        <p class="text-base md:text-lg mb-4">
+                            ZOO BOOM is an engaging and colorful puzzle game that brings the animal kingdom to life through exciting matching challenges. As one of the most addictive free online matching games available today, ZOO BOOM combines simple mechanics with strategic depth to create hours of entertaining gameplay. In this vibrant world, players connect matching animals to clear the board, overcome obstacles, and complete level objectives.
+                        </p>
                         
-                        <div class="bg-white p-8 rounded-xl shadow-lg mb-8">
-                            <h3 class="text-[32px] font-semibold mb-3 text-[#007AFD]">Game Overview</h3>
-                            <p class="text-[22px] mb-6">ZOO BOOM is an engaging and colorful puzzle game that brings the animal kingdom to life through exciting matching challenges. As one of the most addictive free online matching games available today, ZOO BOOM combines simple mechanics with strategic depth to create hours of entertaining gameplay. In this vibrant world, players connect matching animals to clear the board, overcome obstacles, and complete level objectives.</p>
-                            
-                            <p class="text-[22px] mb-6">What sets ZOO BOOM apart from other matching games is its charming zoo theme featuring adorable animal characters, each with their own unique animations and sounds. The game progressively introduces new mechanics and challenges, ensuring that both newcomers and experienced puzzle enthusiasts will find something to enjoy in ZOO BOOM's colorful world.</p>
-                        </div>
+                        <p class="text-base md:text-lg">
+                            What sets ZOO BOOM apart from other matching games is its charming zoo theme featuring adorable animal characters, each with their own unique animations and sounds. The game progressively introduces new mechanics and challenges, ensuring that both newcomers and experienced puzzle enthusiasts will find something to enjoy in ZOO BOOM's colorful world.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-md mb-8">
+                        <h4 class="text-lg md:text-xl lg:text-2xl font-semibold mb-4 text-apple-blue">Key Features of ZOO BOOM</h4>
                         
-                        <div class="bg-white p-8 rounded-xl shadow-lg mb-8">
-                            <h3 class="text-[32px] font-semibold mb-3 text-[#007AFD]">Key Features of ZOO BOOM</h3>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <h4 class="text-[26px] font-medium mb-2 text-[#007AFD]">Colorful Zoo Animals</h4>
-                                    <p class="text-[22px] mb-4">ZOO BOOM features a diverse cast of adorable animal characters including lions, elephants, monkeys, pandas, and many more. Each animal is beautifully designed with vibrant colors and playful animations that bring the ZOO BOOM world to life.</p>
-                                </div>
-                                
-                                <div>
-                                    <h4 class="text-[26px] font-medium mb-2 text-[#007AFD]">100+ Challenging Levels</h4>
-                                    <p class="text-[22px] mb-4">With over 100 unique levels spanning multiple themed worlds, ZOO BOOM offers a progression system that gradually increases in difficulty. Each new level in ZOO BOOM introduces fresh challenges and objectives to keep the gameplay exciting and engaging.</p>
-                                </div>
-                                
-                                <div>
-                                    <h4 class="text-[26px] font-medium mb-2 text-[#007AFD]">Powerful Boosters</h4>
-                                    <p class="text-[22px] mb-4">Discover and utilize special power-ups in ZOO BOOM that can help you overcome difficult board layouts. From row-clearing rockets to animal-specific removers, these boosters add a strategic element to the ZOO BOOM matching gameplay.</p>
-                                </div>
-                                
-                                <div>
-                                    <h4 class="text-[26px] font-medium mb-2 text-[#007AFD]">Special Combo Mechanics</h4>
-                                    <p class="text-[22px] mb-4">ZOO BOOM rewards skillful play with special combinations. Match animals in L-shapes, T-shapes, or larger groups to create powerful special pieces that can clear large portions of the ZOO BOOM game board in spectacular fashion.</p>
-                                </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="hover-card p-4 rounded-lg bg-blue-50 transition-all">
+                                <h5 class="text-base md:text-lg lg:text-xl font-medium mb-2 text-apple-blue flex items-center">
+                                    <i class="fas fa-paw mr-2 text-orange-400"></i>Colorful Zoo Animals
+                                </h5>
+                                <p class="text-sm md:text-base mb-2">
+                                    ZOO BOOM features a diverse cast of adorable animal characters including lions, elephants, monkeys, pandas, and many more. Each animal is beautifully designed with vibrant colors and playful animations that bring the ZOO BOOM world to life.
+                                </p>
                             </div>
-                        </div>
-                        
-                        <div class="bg-white p-8 rounded-xl shadow-lg">
-                            <h3 class="text-[32px] font-semibold mb-3 text-[#007AFD]">The ZOO BOOM Experience</h3>
-                            <p class="text-[22px] mb-4">Playing ZOO BOOM free online is more than just matching animals – it's about experiencing a complete puzzle adventure. The game combines intuitive touch or mouse controls with satisfying visual and audio feedback to create an immersive experience. Whether you're playing a quick session during a break or spending hours progressing through the campaign, ZOO BOOM provides a perfect balance of casual fun and challenging gameplay.</p>
                             
-                            <p class="text-[22px]">The ZOO BOOM universe expands beyond basic matching with special events, timed challenges, and unique game modes that keep the content fresh and exciting. With regular updates adding new levels, animals, and features, there's always something new to discover in the world of ZOO BOOM.</p>
+                            <div class="hover-card p-4 rounded-lg bg-green-50 transition-all">
+                                <h5 class="text-base md:text-lg lg:text-xl font-medium mb-2 text-apple-green flex items-center">
+                                    <i class="fas fa-layer-group mr-2"></i>100+ Challenging Levels
+                                </h5>
+                                <p class="text-sm md:text-base mb-2">
+                                    With over 100 unique levels spanning multiple themed worlds, ZOO BOOM offers a progression system that gradually increases in difficulty. Each new level in ZOO BOOM introduces fresh challenges and objectives to keep the gameplay exciting and engaging.
+                                </p>
+                            </div>
+                            
+                            <div class="hover-card p-4 rounded-lg bg-red-50 transition-all">
+                                <h5 class="text-base md:text-lg lg:text-xl font-medium mb-2 text-apple-red flex items-center">
+                                    <i class="fas fa-rocket mr-2"></i>Powerful Boosters
+                                </h5>
+                                <p class="text-sm md:text-base mb-2">
+                                    Discover and utilize special power-ups in ZOO BOOM that can help you overcome difficult board layouts. From row-clearing rockets to animal-specific removers, these boosters add a strategic element to the ZOO BOOM matching gameplay.
+                                </p>
+                            </div>
+                            
+                            <div class="hover-card p-4 rounded-lg bg-purple-50 transition-all">
+                                <h5 class="text-base md:text-lg lg:text-xl font-medium mb-2 text-purple-600 flex items-center">
+                                    <i class="fas fa-magic mr-2"></i>Special Combo Mechanics
+                                </h5>
+                                <p class="text-sm md:text-base mb-2">
+                                    ZOO BOOM rewards skillful play with special combinations. Match animals in L-shapes, T-shapes, or larger groups to create powerful special pieces that can clear large portions of the ZOO BOOM game board in spectacular fashion.
+                                </p>
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- How to Play ZOO BOOM -->
-                    <div class="mb-12">
-                        <h2 class="text-[40px] font-bold mb-4 text-[#007AFD]">How to Play ZOO BOOM</h2>
+                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-md">
+                        <h4 class="text-lg md:text-xl lg:text-2xl font-semibold mb-4 text-apple-blue">The ZOO BOOM Experience</h4>
+                        <p class="text-base md:text-lg mb-4">
+                            Playing ZOO BOOM free online is more than just matching animals – it's about experiencing a complete puzzle adventure. The game combines intuitive touch or mouse controls with satisfying visual and audio feedback to create an immersive experience. Whether you're playing a quick session during a break or spending hours progressing through the campaign, ZOO BOOM provides a perfect balance of casual fun and challenging gameplay.
+                        </p>
                         
-                        <div class="bg-white p-8 rounded-xl shadow-lg mb-8">
-                            <h3 class="text-[32px] font-semibold mb-3 text-[#007AFD]">Getting Started with ZOO BOOM</h3>
-                            <p class="text-[22px] mb-6">ZOO BOOM is accessible directly in your web browser with no downloads required. To start playing ZOO BOOM free online, simply visit the game page and click the play button. The game will load directly in your browser, allowing for instant access to all the animal-matching fun.</p>
-                            
-                            <p class="text-[22px] mb-6">ZOO BOOM is designed to be playable on various devices, including desktops, laptops, tablets, and smartphones. The responsive controls adapt to your device, making ZOO BOOM equally enjoyable whether you're using a mouse or touchscreen.</p>
-                            
-                            <div class="bg-apple-lightgray p-4 rounded-lg mb-6">
-                                <h4 class="text-[26px] font-medium mb-2 text-[#007AFD]">ZOO BOOM Compatibility</h4>
-                                <ul class="list-disc pl-6 text-[22px]">
-                                    <li>Desktop browsers (Chrome, Firefox, Safari, Edge)</li>
-                                    <li>iOS devices (iPhone and iPad)</li>
-                                    <li>Android smartphones and tablets</li>
-                                    <li>Windows tablets and touchscreen devices</li>
-                                </ul>
-                            </div>
-                            
-                            <p class="text-[22px]">The first few levels of ZOO BOOM serve as a tutorial, introducing you to the basic mechanics and objectives. Follow the on-screen instructions to learn how to match animals, use power-ups, and complete level goals in the ZOO BOOM universe.</p>
-                        </div>
-                        
-                        <div class="bg-white p-8 rounded-xl shadow-lg mb-8">
-                            <h3 class="text-[32px] font-semibold mb-3 text-[#007AFD]">Basic ZOO BOOM Mechanics</h3>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
-                                <div>
-                                    <h4 class="text-[26px] font-medium mb-2 text-[#007AFD]">Matching Animals</h4>
-                                    <p class="text-[22px]">In ZOO BOOM, you need to connect three or more identical animals to remove them from the board. Unlike traditional match-3 games, ZOO BOOM allows you to connect animals in any direction – horizontally, vertically, and diagonally – as long as they are the same type and adjacent to each other.</p>
-                                </div>
-                                
-                                <div>
-                                    <h4 class="text-[26px] font-medium mb-2 text-[#007AFD]">Creating Chains</h4>
-                                    <p class="text-[22px]">The longer the chain of matching animals you create in ZOO BOOM, the higher your score. Try to connect as many animals as possible in a single move to maximize points and progress through levels faster. ZOO BOOM rewards strategic thinking and pattern recognition.</p>
-                                </div>
-                            </div>
-                            
-                            <h4 class="text-[26px] font-medium mb-2 text-[#007AFD]">Level Objectives</h4>
-                            <p class="text-[22px] mb-6">Each level in ZOO BOOM has specific objectives that must be completed to progress. These might include:</p>
-                            
-                            <ul class="list-disc pl-6 text-[22px] mb-6">
-                                <li>Collecting a certain number of specific animals</li>
-                                <li>Clearing obstacles from the board</li>
-                                <li>Reaching a target score within a limited number of moves</li>
-                                <li>Bringing special items to the bottom of the board</li>
-                                <li>Defeating boss characters by matching specific patterns</li>
-                            </ul>
-                            
-                            <p class="text-[22px]">Pay attention to the objective display at the beginning of each ZOO BOOM level to understand what you need to accomplish.</p>
-                        </div>
-                        
-                        <div class="bg-white p-8 rounded-xl shadow-lg">
-                            <h3 class="text-[32px] font-semibold mb-3 text-[#007AFD]">Advanced ZOO BOOM Techniques</h3>
-                            
-                            <h4 class="text-[26px] font-medium mb-2 text-[#007AFD]">Power-ups and Special Items</h4>
-                            <p class="text-[22px] mb-6">As you progress through ZOO BOOM, you'll unlock various power-ups that can help you overcome challenging board layouts. These special items are created by matching animals in specific patterns:</p>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                                <div class="bg-apple-lightgray p-4 rounded-lg">
-                                    <h5 class="text-[22px] font-medium mb-2 text-[#007AFD]">Line Blaster</h5>
-                                    <p class="text-[20px]">Match 4 animals in a line to create a Line Blaster in ZOO BOOM. When activated, this power-up clears an entire row or column, depending on the direction of your swipe.</p>
-                                </div>
-                                
-                                <div class="bg-apple-lightgray p-4 rounded-lg">
-                                    <h5 class="text-[22px] font-medium mb-2 text-[#007AFD]">Area Bomb</h5>
-                                    <p class="text-[20px]">Create an L or T shape match in ZOO BOOM to generate an Area Bomb. This powerful item clears all animals in a 3×3 area around it when activated.</p>
-                                </div>
-                                
-                                <div class="bg-apple-lightgray p-4 rounded-lg">
-                                    <h5 class="text-[22px] font-medium mb-2 text-[#007AFD]">Animal Collector</h5>
-                                    <p class="text-[20px]">Match 5 or more animals in ZOO BOOM to create an Animal Collector. When used, this special item removes all animals of the same type from the entire board.</p>
-                                </div>
-                                
-                                <div class="bg-apple-lightgray p-4 rounded-lg">
-                                    <h5 class="text-[22px] font-medium mb-2 text-[#007AFD]">Super Combo</h5>
-                                    <p class="text-[20px]">Combine two power-ups in ZOO BOOM to create devastating effects that can clear large portions of the board. Experiment with different combinations to discover all possible super combos.</p>
-                                </div>
-                            </div>
-                            
-                            <p class="text-[22px]">Mastering these power-ups and learning when to use them is key to becoming a ZOO BOOM expert and tackling the most challenging levels in the game.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Why Play ZOO BOOM -->
-                    <div class="mb-12">
-                        <h2 class="text-[40px] font-bold mb-4 text-[#007AFD]">Why Play ZOO BOOM?</h2>
-                        
-                        <div class="bg-white p-8 rounded-xl shadow-lg mb-8">
-                            <h3 class="text-[32px] font-semibold mb-3 text-[#007AFD]">Engaging Gameplay Experience</h3>
-                            
-                            <p class="text-[22px] mb-6">ZOO BOOM offers a perfect balance of accessibility and depth that appeals to players of all skill levels. The simple concept of matching animals is easy to grasp, making ZOO BOOM approachable for casual gamers and young players. However, the strategic elements and increasing difficulty ensure that even experienced puzzle enthusiasts will find ZOO BOOM challenging and rewarding.</p>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                                <div>
-                                    <h4 class="text-[26px] font-medium mb-2 text-[#007AFD]">Satisfying Progression</h4>
-                                    <p class="text-[22px]">ZOO BOOM's level-based structure provides a clear sense of achievement as you overcome challenges and unlock new content. The game keeps track of your stars and high scores, allowing you to measure your improvement and strive for perfection in each ZOO BOOM level.</p>
-                                </div>
-                                
-                                <div>
-                                    <h4 class="text-[26px] font-medium mb-2 text-[#007AFD]">Visual and Audio Delight</h4>
-                                    <p class="text-[22px]">The colorful graphics and charming animal designs in ZOO BOOM create a visually appealing experience, while the satisfying sound effects and upbeat music enhance the gameplay. Every match in ZOO BOOM feels rewarding thanks to the engaging audiovisual feedback.</p>
-                                </div>
-                            </div>
-                            
-                            <p class="text-[22px]">With regular updates adding new content, ZOO BOOM ensures that there's always something fresh to experience, keeping the gameplay exciting even after many hours of play.</p>
-                        </div>
-                        
-                        <div class="bg-white p-8 rounded-xl shadow-lg mb-8">
-                            <h3 class="text-[32px] font-semibold mb-3 text-[#007AFD]">Mental Benefits of Playing ZOO BOOM</h3>
-                            
-                            <p class="text-[22px] mb-6">Beyond entertainment, ZOO BOOM offers several cognitive benefits that make it more than just a casual game:</p>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                                <div class="bg-apple-lightgray p-4 rounded-lg">
-                                    <h4 class="text-[26px] font-medium mb-2 text-[#007AFD]">Pattern Recognition</h4>
-                                    <p class="text-[22px]">ZOO BOOM challenges your ability to identify patterns and potential matches, exercising your visual processing skills and spatial awareness.</p>
-                                </div>
-                                
-                                <div class="bg-apple-lightgray p-4 rounded-lg">
-                                    <h4 class="text-[26px] font-medium mb-2 text-[#007AFD]">Strategic Thinking</h4>
-                                    <p class="text-[22px]">Planning moves ahead and deciding when to use power-ups in ZOO BOOM develops strategic thinking and decision-making abilities.</p>
-                                </div>
-                                
-                                <div class="bg-apple-lightgray p-4 rounded-lg">
-                                    <h4 class="text-[26px] font-medium mb-2 text-[#007AFD]">Focus and Concentration</h4>
-                                    <p class="text-[22px]">The engaging nature of ZOO BOOM helps improve concentration and attention span as you focus on achieving level objectives.</p>
-                                </div>
-                            </div>
-                            
-                            <p class="text-[22px]">Regular puzzle gaming, like playing ZOO BOOM, has been associated with cognitive benefits including improved problem-solving skills and enhanced mental flexibility. ZOO BOOM provides these benefits in an enjoyable package that never feels like mental exercise.</p>
-                        </div>
-                        
-                        <div class="bg-white p-8 rounded-xl shadow-lg">
-                            <h3 class="text-[32px] font-semibold mb-3 text-[#007AFD]">ZOO BOOM Free Online Access</h3>
-                            
-                            <p class="text-[22px] mb-6">One of the greatest advantages of ZOO BOOM is its accessibility as a free online game. You can enjoy the full ZOO BOOM experience without spending a penny:</p>
-                            
-                            <ul class="list-disc pl-6 text-[22px] mb-6">
-                                <li>No download required - play ZOO BOOM instantly in your browser</li>
-                                <li>No account creation needed to start enjoying ZOO BOOM</li>
-                                <li>Access to all core ZOO BOOM features without payment</li>
-                                <li>Cross-device compatibility for ZOO BOOM gameplay anywhere</li>
-                                <li>Regular free updates with new ZOO BOOM content</li>
-                            </ul>
-                            
-                            <p class="text-[22px]">ZOO BOOM offers premium entertainment value without the premium price tag, making it an accessible option for everyone looking for quality puzzle gaming experiences online.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- FAQ Section -->
-                    <div>
-                        <h2 class="text-[40px] font-bold mb-4 text-[#007AFD]">Frequently Asked Questions About ZOO BOOM</h2>
-                        
-                        <div class="bg-white p-8 rounded-xl shadow-lg space-y-6">
-                            <div>
-                                <h3 class="text-[32px] font-semibold mb-2 text-[#007AFD]">Is ZOO BOOM completely free to play?</h3>
-                                <p class="text-[22px]">Yes, ZOO BOOM is completely free to play online. You can access and enjoy the full game experience without any purchase required. The game is supported by non-intrusive advertisements, but there are no mandatory purchases or paywalls in ZOO BOOM.</p>
-                            </div>
-                            
-                            <div>
-                                <h3 class="text-[32px] font-semibold mb-2 text-[#007AFD]">How many levels are available in ZOO BOOM?</h3>
-                                <p class="text-[22px]">ZOO BOOM currently features over 100 unique levels across multiple themed worlds, each with its own challenges and objectives. The ZOO BOOM development team regularly adds new levels through updates, so the content continues to expand over time.</p>
-                            </div>
-                            
-                            <div>
-                                <h3 class="text-[32px] font-semibold mb-2 text-[#007AFD]">Can I play ZOO BOOM on my mobile device?</h3>
-                                <p class="text-[22px]">Absolutely! ZOO BOOM is fully optimized for mobile play. You can enjoy ZOO BOOM on virtually any device with a web browser, including iOS devices (iPhone, iPad), Android smartphones and tablets, and desktop computers. The touch controls on mobile make ZOO BOOM especially intuitive and fun to play.</p>
-                            </div>
-                            
-                            <div>
-                                <h3 class="text-[32px] font-semibold mb-2 text-[#007AFD]">Does ZOO BOOM save my progress?</h3>
-                                <p class="text-[22px]">Yes, ZOO BOOM automatically saves your progress using browser storage. As long as you play on the same device and browser, and don't clear your browser data, your ZOO BOOM game progress will be remembered. This includes your level progress, high scores, and any earned power-ups in the ZOO BOOM game world.</p>
-                            </div>
-                            
-                            <div>
-                                <h3 class="text-[32px] font-semibold mb-2 text-[#007AFD]">Are there different difficulty levels in ZOO BOOM?</h3>
-                                <p class="text-[22px]">ZOO BOOM features a progressive difficulty curve that naturally increases as you advance through the game. The early levels serve as tutorials to familiarize you with the basic ZOO BOOM mechanics, while later levels introduce more complex objectives, obstacles, and board layouts that provide a greater challenge for experienced players.</p>
-                            </div>
-                            
-                            <div>
-                                <h3 class="text-[32px] font-semibold mb-2 text-[#007AFD]">Can I play ZOO BOOM offline?</h3>
-                                <p class="text-[22px]">ZOO BOOM is primarily an online browser-based game that requires an internet connection to load initially. However, once the game is loaded, some browsers may allow limited offline play of ZOO BOOM for a short period. For the best and most reliable ZOO BOOM experience, we recommend playing with an active internet connection.</p>
-                            </div>
-                        </div>
+                        <p class="text-base md:text-lg">
+                            The ZOO BOOM universe expands beyond basic matching with special events, timed challenges, and unique game modes that keep the content fresh and exciting. With regular updates adding new levels, animals, and features, there's always something new to discover in the world of ZOO BOOM.
+                        </p>
                     </div>
                 </div>
-            </section>
+                
+                <!-- Additional game guide sections would follow but shortened for now -->
+                <div class="flex justify-center mt-8">
+                    <button class="btn btn-primary inline-flex items-center gap-2" onclick="window.location.href='#game-display'">
+                        <i class="fas fa-play"></i> Play ZOO BOOM Now
+                    </button>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Fourth Screen: Player Reviews and Social Sharing -->
-    <section class="section bg-apple-lightgray" id="reviews">
+    <section class="section bg-apple-lightgray py-16" id="reviews">
         <div class="container mx-auto">
-            <h2 class="text-[48px] font-bold mb-6 text-center text-[#007AFD]">Player Reviews</h2>
-            <p class="text-[30px] text-center mb-12 max-w-3xl mx-auto">See what other players are saying about ZOO BOOM!</p>
+            <div class="text-center mb-12" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-apple-blue">
+                    <i class="fas fa-star text-yellow-400 mr-2"></i>Player Reviews
+                </h2>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto">
+                    See what other players are saying about ZOO BOOM!
+                </p>
+            </div>
             
-            <div class="review-carousel">
-                <!-- Removing the left and right navigation controls -->
+            <div class="review-carousel mb-12 relative overflow-hidden" data-aos="fade-up" data-aos-duration="800">
+                <!-- Carousel navigation arrows -->
+                <button class="carousel-control prev absolute z-10 hidden md:flex">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-control next absolute z-10 hidden md:flex">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
                 
                 <div class="review-carousel-inner">
-                    <!-- 第1组评论 -->
+                    <!-- First group of reviews -->
                     <div class="review-slide">
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <div class="flex items-center mb-4">
-                        <div>
-                            <h3 class="font-bold">Sarah Johnson</h3>
-                            <div class="flex">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="italic text-[20px]">"ZOO BOOM is my favorite puzzle game! I've been playing for months and still can't get enough of those cute animals and challenging levels."</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <div class="flex items-center mb-4">
-                        <div>
-                            <h3 class="font-bold">Mike Thompson</h3>
-                            <div class="flex">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="text-gray-300 text-2xl">★</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="italic text-[20px]">"Super addictive game that's perfect for quick gaming sessions. The power-ups are really satisfying to use and the difficulty curve is just right."</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <div class="flex items-center mb-4">
-                        <div>
-                            <h3 class="font-bold">Emma Davis</h3>
-                            <div class="flex">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="italic text-[20px]">"I play this with my kids and we all love it! The colorful animals and fun sound effects make it entertaining for all ages. Highly recommended!"</p>
-                </div>
-            </div>
-            
-                    <!-- 第2组评论 -->
-                    <div class="review-slide">
-                        <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all h-full">
                             <div class="flex items-center mb-4">
-                                <div>
-                                    <h3 class="font-bold">Alex Chen</h3>
-                                    <div class="flex">
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                </div>
-            </div>
-        </div>
-                            <p class="italic text-[20px]">"This game is a perfect time killer! I love how easy it is to learn but still challenging to master. The animal designs are super cute too!"</p>
-                        </div>
-                        
-                        <div class="bg-white p-6 rounded-xl shadow-md">
-                            <div class="flex items-center mb-4">
-                                <div>
-                                    <h3 class="font-bold">Jessica Williams</h3>
-                        <div class="flex">
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                        </div>
+                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-apple-blue mr-3">
+                                    <i class="fas fa-user"></i>
                                 </div>
-                            </div>
-                            <p class="italic text-[20px]">"I'm absolutely obsessed with this game! The animations are so smooth and the gameplay is incredibly satisfying. Definitely worth downloading!"</p>
-                    </div>
-                    
-                        <div class="bg-white p-6 rounded-xl shadow-md">
-                            <div class="flex items-center mb-4">
                                 <div>
-                                    <h3 class="font-bold">David Rodriguez</h3>
+                                    <h3 class="font-bold">Sarah Johnson</h3>
                                     <div class="flex">
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="text-gray-300 text-2xl">★</span>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
                                     </div>
                                 </div>
                             </div>
-                            <p class="italic text-[20px]">"Great puzzle game that really makes you think! I appreciate how the difficulty ramps up gradually. Perfect for my daily commute."</p>
+                            <p class="italic text-base md:text-lg text-gray-700">
+                                "ZOO BOOM is my favorite puzzle game! I've been playing for months and still can't get enough of those cute animals and challenging levels."
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i> 2 months ago
+                            </div>
+                        </div>
+                        
+                        <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all h-full">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-apple-green mr-3">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">Mike Thompson</h3>
+                                    <div class="flex">
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="italic text-base md:text-lg text-gray-700">
+                                "Super addictive game that's perfect for quick gaming sessions. The power-ups are really satisfying to use and the difficulty curve is just right."
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i> 3 weeks ago
+                            </div>
+                        </div>
+                        
+                        <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all h-full">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 mr-3">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">Emma Davis</h3>
+                                    <div class="flex">
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="italic text-base md:text-lg text-gray-700">
+                                "I play this with my kids and we all love it! The colorful animals and fun sound effects make it entertaining for all ages. Highly recommended!"
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i> 1 month ago
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- 第3组评论 -->
+                    <!-- Second group of reviews -->
                     <div class="review-slide">
-                        <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all h-full">
                             <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-apple-red mr-3">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">Alex Chen</h3>
+                                    <div class="flex">
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="italic text-base md:text-lg text-gray-700">
+                                "This game is a perfect time killer! I love how easy it is to learn but still challenging to master. The animal designs are super cute too!"
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i> 2 weeks ago
+                            </div>
+                        </div>
+                        
+                        <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all h-full">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 mr-3">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">Jessica Williams</h3>
+                                    <div class="flex">
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="italic text-base md:text-lg text-gray-700">
+                                "I'm absolutely obsessed with this game! The animations are so smooth and the gameplay is incredibly satisfying. Definitely worth playing!"
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i> 1 month ago
+                            </div>
+                        </div>
+                        
+                        <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all h-full">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">David Rodriguez</h3>
+                                    <div class="flex">
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="italic text-base md:text-lg text-gray-700">
+                                "Great puzzle game that really makes you think! I appreciate how the difficulty ramps up gradually. Perfect for my daily commute."
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i> 3 weeks ago
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Third group of reviews -->
+                    <div class="review-slide">
+                        <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all h-full">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 mr-3">
+                                    <i class="fas fa-user"></i>
+                                </div>
                                 <div>
                                     <h3 class="font-bold">Lisa Murphy</h3>
                                     <div class="flex">
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    </div>
                                 </div>
                             </div>
+                            <p class="italic text-base md:text-lg text-gray-700">
+                                "The best matching game I've ever played! Each level brings new challenges and the special powers are so fun to use. Never gets boring!"
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i> 2 months ago
                             </div>
-                            <p class="italic text-[20px]">"The best matching game I've ever played! Each level brings new challenges and the special powers are so fun to use. Never gets boring!"</p>
                         </div>
                         
-                        <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all h-full">
                             <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 mr-3">
+                                    <i class="fas fa-user"></i>
+                                </div>
                                 <div>
                                     <h3 class="font-bold">Kevin Zhang</h3>
                                     <div class="flex">
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="text-gray-300 text-2xl">★</span>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-gray-300"></i>
+                                    </div>
                                 </div>
                             </div>
+                            <p class="italic text-base md:text-lg text-gray-700">
+                                "A solid puzzle game with adorable graphics. I particularly enjoy how the game introduces new mechanics throughout the levels. Very engaging!"
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i> 1 month ago
                             </div>
-                            <p class="italic text-[20px]">"A solid puzzle game with adorable graphics. I particularly enjoy how the game introduces new mechanics throughout the levels. Very engaging!"</p>
                         </div>
                         
-                        <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all h-full">
                             <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 mr-3">
+                                    <i class="fas fa-user"></i>
+                                </div>
                                 <div>
                                     <h3 class="font-bold">Olivia Taylor</h3>
                                     <div class="flex">
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                            <p class="italic text-[20px]">"My family fights over who gets to play ZOO BOOM next! The sound effects are delightful and the progression system keeps us coming back for more."</p>
+                            <p class="italic text-base md:text-lg text-gray-700">
+                                "My family fights over who gets to play ZOO BOOM next! The sound effects are delightful and the progression system keeps us coming back for more."
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i> 2 weeks ago
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- 第4组评论 -->
+                    <!-- Fourth group of reviews -->
                     <div class="review-slide">
-                        <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all h-full">
                             <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3">
+                                    <i class="fas fa-user"></i>
+                                </div>
                                 <div>
                                     <h3 class="font-bold">Ryan Foster</h3>
                                     <div class="flex">
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    </div>
                                 </div>
                             </div>
+                            <p class="italic text-base md:text-lg text-gray-700">
+                                "ZOO BOOM is my go-to game when I need to relax. The puzzles are challenging enough to be engaging but not so difficult that they become frustrating."
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i> 3 months ago
                             </div>
-                            <p class="italic text-[20px]">"ZOO BOOM is my go-to game when I need to relax. The puzzles are challenging enough to be engaging but not so difficult that they become frustrating."</p>
                         </div>
                         
-                        <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all h-full">
                             <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 mr-3">
+                                    <i class="fas fa-user"></i>
+                                </div>
                                 <div>
                                     <h3 class="font-bold">Sophia Lee</h3>
                                     <div class="flex">
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="text-gray-300 text-2xl">★</span>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-gray-300"></i>
+                                    </div>
                                 </div>
                             </div>
+                            <p class="italic text-base md:text-lg text-gray-700">
+                                "I downloaded this game on a whim and now I can't put it down! The animal animations when you make a match are so satisfying. Great time waster!"
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i> 2 weeks ago
                             </div>
-                            <p class="italic text-[20px]">"I downloaded this game on a whim and now I can't put it down! The animal animations when you make a match are so satisfying. Great time waster!"</p>
                         </div>
                         
-                        <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all h-full">
                             <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 mr-3">
+                                    <i class="fas fa-user"></i>
+                                </div>
                                 <div>
                                     <h3 class="font-bold">Thomas Wilson</h3>
                                     <div class="flex">
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    </div>
                                 </div>
                             </div>
+                            <p class="italic text-base md:text-lg text-gray-700">
+                                "As a puzzle game enthusiast, I can confidently say ZOO BOOM is one of the best in its genre. The strategic depth increases as you progress in the game."
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i> 1 month ago
+                            </div>
                         </div>
-                            <p class="italic text-[20px]">"As a puzzle game enthusiast, I can confidently say ZOO BOOM is one of the best in its genre. The strategic depth increases as you progress in the game."</p>
                     </div>
-                </div>
-                
-                    <!-- 第5组评论 -->
+                    
+                    <!-- Fifth group of reviews -->
                     <div class="review-slide">
-                        <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all h-full">
                             <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 mr-3">
+                                    <i class="fas fa-user"></i>
+                                </div>
                                 <div>
                                     <h3 class="font-bold">Amy Martinez</h3>
                                     <div class="flex">
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                        </div>
-                        </div>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    </div>
+                                </div>
                             </div>
-                            <p class="italic text-[20px]">"I'm completely hooked on ZOO BOOM! The game is simple to understand but offers plenty of challenges. Love the colorful animal designs too!"</p>
+                            <p class="italic text-base md:text-lg text-gray-700">
+                                "I'm completely hooked on ZOO BOOM! The game is simple to understand but offers plenty of challenges. Love the colorful animal designs too!"
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i> 2 months ago
+                            </div>
                         </div>
                         
-                        <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all h-full">
                             <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 mr-3">
+                                    <i class="fas fa-user"></i>
+                                </div>
                                 <div>
                                     <h3 class="font-bold">James Brown</h3>
                                     <div class="flex">
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="text-gray-300 text-2xl">★</span>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-gray-300"></i>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <p class="italic text-base md:text-lg text-gray-700">
+                                "A refreshing take on the match-3 genre with its zoo theme. The power-ups are creative and the level design is thoughtful. Very enjoyable!"
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i> 3 weeks ago
                             </div>
-                            <p class="italic text-[20px]">"A refreshing take on the match-3 genre with its zoo theme. The power-ups are creative and the level design is thoughtful. Very enjoyable!"</p>
                         </div>
                         
-                        <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="hover-card bg-white p-6 rounded-xl shadow-md transition-all h-full">
                             <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 mr-3">
+                                    <i class="fas fa-user"></i>
+                                </div>
                                 <div>
                                     <h3 class="font-bold">Michelle Parker</h3>
                                     <div class="flex">
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                        </div>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    </div>
                                 </div>
                             </div>
-                            <p class="italic text-[20px]">"ZOO BOOM has become a family tradition in our household. We take turns playing levels and competing for high scores. Outstanding family-friendly game!"</p>
+                            <p class="italic text-base md:text-lg text-gray-700">
+                                "ZOO BOOM has become a family tradition in our household. We take turns playing levels and competing for high scores. Outstanding family-friendly game!"
+                            </p>
+                            <div class="mt-4 text-xs text-gray-500">
+                                <i class="fas fa-calendar-alt mr-1"></i> 1 month ago
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="carousel-indicators">
-                    <div class="carousel-indicator active" onclick="goToSlide(0)"></div>
-                    <div class="carousel-indicator" onclick="goToSlide(1)"></div>
-                    <div class="carousel-indicator" onclick="goToSlide(2)"></div>
-                    <div class="carousel-indicator" onclick="goToSlide(3)"></div>
-                    <div class="carousel-indicator" onclick="goToSlide(4)"></div>
+                <div class="carousel-indicators flex justify-center mt-8">
+                    <button class="carousel-indicator active mx-1" onclick="goToSlide(0)"></button>
+                    <button class="carousel-indicator mx-1" onclick="goToSlide(1)"></button>
+                    <button class="carousel-indicator mx-1" onclick="goToSlide(2)"></button>
+                    <button class="carousel-indicator mx-1" onclick="goToSlide(3)"></button>
+                    <button class="carousel-indicator mx-1" onclick="goToSlide(4)"></button>
                 </div>
             </div>
             
-            <div class="text-center">
-                <h3 class="text-xl font-bold mb-4">Share ZOO BOOM with Friends</h3>
+            <!-- Social sharing section -->
+            <div class="text-center mt-12" data-aos="fade-up" data-aos-duration="800">
+                <h3 class="text-xl font-bold mb-6">Share ZOO BOOM with Friends</h3>
                 <div class="flex justify-center space-x-4">
-                    <a href="#" onclick="shareOnFacebook(); return false;" class="inline-flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
-                        </svg>
+                    <a href="#" onclick="shareOnFacebook(); return false;" class="social-icon inline-flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all">
+                        <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="#" onclick="shareOnTwitter(); return false;" class="inline-flex items-center justify-center w-12 h-12 bg-blue-400 text-white rounded-full hover:bg-blue-500 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-                        </svg>
+                    <a href="#" onclick="shareOnTwitter(); return false;" class="social-icon inline-flex items-center justify-center w-12 h-12 bg-blue-400 text-white rounded-full hover:bg-blue-500 transition-all">
+                        <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="#" onclick="shareOnPinterest(); return false;" class="inline-flex items-center justify-center w-12 h-12 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.627 0-12 5.372-12 12 0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146 1.124.347 2.317.535 3.554.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z" fill-rule="evenodd" clip-rule="evenodd"/>
-                        </svg>
+                    <a href="#" onclick="shareOnPinterest(); return false;" class="social-icon inline-flex items-center justify-center w-12 h-12 bg-red-600 text-white rounded-full hover:bg-red-700 transition-all">
+                        <i class="fab fa-pinterest-p"></i>
                     </a>
-                    <a href="#" onclick="shareViaEmail(); return false;" class="inline-flex items-center justify-center w-12 h-12 bg-pink-600 text-white rounded-full hover:bg-pink-700 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
-                        </svg>
+                    <a href="#" onclick="shareViaEmail(); return false;" class="social-icon inline-flex items-center justify-center w-12 h-12 bg-pink-600 text-white rounded-full hover:bg-pink-700 transition-all">
+                        <i class="fas fa-envelope"></i>
                     </a>
                 </div>
+                <p class="mt-4 text-sm text-gray-600">
+                    Help others discover the fun of ZOO BOOM!
+                </p>
             </div>
-        </div>
-    </section>
-
-    <!-- Fifth Screen: FAQ Section -->
-    <section class="section bg-white" id="faq">
-        <div class="container mx-auto">
-            <h2 class="text-[48px] font-bold mb-6 text-center text-[#007AFD]">Frequently Asked Questions</h2>
-            <p class="text-[30px] text-center mb-12 max-w-3xl mx-auto">Find answers to common questions about ZOO BOOM!</p>
             
-            <div class="max-w-4xl mx-auto">
-                <!-- FAQ Items -->
-                <div class="space-y-6">
-                    <!-- FAQ Item 1 -->
-                    <div class="faq-item bg-apple-lightgray p-6 rounded-xl shadow-md">
-                        <button class="faq-question w-full flex justify-between items-center text-left font-bold text-lg focus:outline-none">
-                            <span>How do I play ZOO BOOM?</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="faq-icon h-6 w-6 text-apple-blue transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <div class="faq-answer mt-4 hidden">
-                            <p class="text-[30px]">ZOO BOOM is a match-3 puzzle game where you connect three or more identical animal icons to make them disappear. Simply drag your finger or click and drag your mouse to connect matching animals in any direction - horizontal, vertical, or diagonal. The more animals you connect in one move, the higher your score!</p>
-                            <p class="mt-2 text-[30px]">As you progress, you'll encounter special challenges and power-ups that can help you clear the board more effectively.</p>
-                        </div>
+            <!-- Add customer satisfaction metrics -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16" data-aos="fade-up" data-aos-duration="800">
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold text-apple-blue mb-2">
+                        4.8
                     </div>
-                    
-                    <!-- FAQ Item 2 -->
-                    <div class="faq-item bg-apple-lightgray p-6 rounded-xl shadow-md">
-                        <button class="faq-question w-full flex justify-between items-center text-left font-bold text-lg focus:outline-none">
-                            <span>How do I earn power-ups?</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="faq-icon h-6 w-6 text-apple-blue transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <div class="faq-answer mt-4 hidden">
-                            <p class="text-[30px]">Power-ups are special abilities that can help you clear the board in different ways. You can earn power-ups by:</p>
-                            <ul class="list-disc pl-6 mt-2 space-y-1 text-[30px]">
-                                <li>Matching more than 4 animals in a single move</li>
-                                <li>Creating special patterns like L-shapes or T-shapes</li>
-                                <li>Completing level objectives with moves to spare</li>
-                                <li>Connecting animals quickly in succession</li>
-                            </ul>
-                            <p class="mt-2 text-[30px]">Each power-up has a unique effect - some clear entire rows or columns, while others remove all animals of a specific type!</p>
-                        </div>
+                    <div class="flex justify-center mb-2">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star-half-alt text-yellow-400"></i>
                     </div>
-                    
-                    <!-- FAQ Item 3 -->
-                    <div class="faq-item bg-apple-lightgray p-6 rounded-xl shadow-md">
-                        <button class="faq-question w-full flex justify-between items-center text-left font-bold text-lg focus:outline-none">
-                            <span>Is ZOO BOOM free to play?</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="faq-icon h-6 w-6 text-apple-blue transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <div class="faq-answer mt-4 hidden">
-                            <p class="text-[30px]">Yes, ZOO BOOM is completely free to play online. You can access and enjoy the full game experience without any purchase required. The game is supported by non-intrusive advertisements, but there are no mandatory purchases or paywalls in ZOO BOOM.</p>
-                            <p class="mt-2 text-[30px]">While there are no in-app purchases, watching occasional advertisements can reward you with extra moves or power-ups if you find yourself stuck on a challenging level.</p>
-                        </div>
+                    <p class="text-gray-600">Average Rating</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold text-apple-green mb-2">
+                        1M+
                     </div>
-                    
-                    <!-- FAQ Item 4 -->
-                    <div class="faq-item bg-apple-lightgray p-6 rounded-xl shadow-md">
-                        <button class="faq-question w-full flex justify-between items-center text-left font-bold text-lg focus:outline-none">
-                            <span>Can I play ZOO BOOM on my mobile device?</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="faq-icon h-6 w-6 text-apple-blue transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <div class="faq-answer mt-4 hidden">
-                            <p class="text-[30px]">Absolutely! ZOO BOOM is fully optimized for mobile play. You can enjoy ZOO BOOM on virtually any device with a web browser, including iOS devices (iPhone, iPad), Android smartphones and tablets, and desktop computers. The touch controls on mobile make ZOO BOOM especially intuitive and fun to play.</p>
-                        </div>
+                    <div class="text-apple-green mb-2">
+                        <i class="fas fa-users text-2xl"></i>
                     </div>
-                    
-                    <!-- FAQ Item 5 -->
-                    <div class="faq-item bg-apple-lightgray p-6 rounded-xl shadow-md">
-                        <button class="faq-question w-full flex justify-between items-center text-left font-bold text-lg focus:outline-none">
-                            <span>Does the game save my progress?</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="faq-icon h-6 w-6 text-apple-blue transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <div class="faq-answer mt-4 hidden">
-                            <p class="text-[30px]">Yes, ZOO BOOM automatically saves your progress using browser storage. As long as you play on the same device and browser, and don't clear your browser data, your ZOO BOOM game progress will be remembered. This includes your level progress, high scores, and any earned power-ups in the ZOO BOOM game world.</p>
-                        </div>
+                    <p class="text-gray-600">Happy Players</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold text-apple-red mb-2">
+                        100+
                     </div>
-                    
-                    <!-- FAQ Item 6 -->
-                    <div class="faq-item bg-apple-lightgray p-6 rounded-xl shadow-md">
-                        <button class="faq-question w-full flex justify-between items-center text-left font-bold text-lg focus:outline-none">
-                            <span>How many levels are there in ZOO BOOM?</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="faq-icon h-6 w-6 text-apple-blue transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <div class="faq-answer mt-4 hidden">
-                            <p class="text-[30px]">ZOO BOOM currently features over 100 unique levels across multiple themed worlds, each with its own challenges and objectives. The ZOO BOOM development team regularly adds new levels through updates, so the content continues to expand over time.</p>
-                        </div>
+                    <div class="text-apple-red mb-2">
+                        <i class="fas fa-gamepad text-2xl"></i>
                     </div>
-                    
-                    <!-- FAQ Item 7 -->
-                    <div class="faq-item bg-apple-lightgray p-6 rounded-xl shadow-md">
-                        <button class="faq-question w-full flex justify-between items-center text-left font-bold text-lg focus:outline-none">
-                            <span>What do I do if the game isn't loading properly?</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="faq-icon h-6 w-6 text-apple-blue transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <div class="faq-answer mt-4 hidden">
-                            <p class="text-[30px]">If you experience technical issues with ZOO BOOM, here are some troubleshooting steps:</p>
-                            <ul class="list-disc pl-6 mt-2 space-y-1 text-[30px]">
-                                <li>Refresh the page</li>
-                                <li>Clear your browser cache and cookies</li>
-                                <li>Try a different browser (Chrome, Firefox, Safari, etc.)</li>
-                                <li>Check your internet connection</li>
-                                <li>Disable ad blockers or extensions that might interfere with the game</li>
-                                <li>Update your browser to the latest version</li>
-                            </ul>
-                            <p class="mt-2 text-[30px]">If problems persist, please contact our support team through the "Report a Bug" link in the footer section.</p>
-                        </div>
-                    </div>
+                    <p class="text-gray-600">Exciting Levels</p>
                 </div>
             </div>
         </div>
@@ -1228,43 +1376,140 @@
     <!-- Footer Section -->
     <footer class="bg-gray-800 text-white py-12">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-1 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">FunnyGame.lol</h3>
-                    <p class="mb-4 text-[18px]">An exciting animal matching puzzle game that will keep you entertained for hours. Match colorful animals and solve challenging puzzles!</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div class="text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start mb-4">
+                        <svg width="32" height="32" viewBox="0 0 40 40" aria-label="ZOO BOOM Logo">
+                            <!-- Using same SVG definition as main logo but simpler for footer -->
+                            <defs>
+                                <radialGradient id="backgroundGradientFooter" cx="50%" cy="50%" r="70%" fx="30%" fy="30%">
+                                    <stop offset="0%" stop-color="#4A7FFF" />
+                                    <stop offset="70%" stop-color="#007AFF" />
+                                    <stop offset="100%" stop-color="#0056B3" />
+                                </radialGradient>
+                            </defs>
+                            <circle cx="20" cy="20" r="20" fill="url(#backgroundGradientFooter)" />
+                            <circle cx="20" cy="20" r="13" fill="#FFE0B2" />
+                            <!-- Simplified eyes -->
+                            <circle cx="15" cy="17" r="2.5" fill="#5D4037" />
+                            <circle cx="25" cy="17" r="2.5" fill="#5D4037" />
+                            <!-- Simple smile -->
+                            <path d="M15,24 Q20,28 25,24" fill="none" stroke="#5D4037" stroke-width="1.5" stroke-linecap="round" />
+                        </svg>
+                        <span class="font-bold text-xl ml-2">FunnyGame.lol</span>
+                    </div>
+                    <p class="mb-4 text-sm md:text-base text-gray-300">
+                        An exciting animal matching puzzle game that will keep you entertained for hours. Match colorful animals and solve challenging puzzles!
+                    </p>
+                    <div class="flex space-x-4 justify-center md:justify-start">
+                        <a href="#" class="social-icon text-white hover:text-apple-blue transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon text-white hover:text-apple-blue transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon text-white hover:text-apple-blue transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon text-white hover:text-apple-blue transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-300 hover:text-white transition-colors">About</a></li>
+                        <li><a href="#how-to-play" class="text-gray-300 hover:text-white transition-colors">How to Play</a></li>
+                        <li><a href="#reviews" class="text-gray-300 hover:text-white transition-colors">Reviews</a></li>
+                        <li><a href="#faq" class="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <h3 class="text-lg font-bold mb-4">Contact Us</h3>
+                    <p class="text-gray-300 mb-2">
+                        <i class="fas fa-envelope mr-2"></i> support@funnygame.lol
+                    </p>
+                    <p class="text-gray-300 mb-4">
+                        <i class="fas fa-globe mr-2"></i> www.funnygame.lol
+                    </p>
+                    <button class="btn bg-apple-blue text-white hover:bg-blue-700 inline-flex items-center gap-2 hidden">
+                        <i class="fas fa-bug"></i> Report a Bug
+                    </button>
                 </div>
             </div>
             
             <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-                <p>&copy; <script>document.write(new Date().getFullYear());</script> FunnyGame.lol. All rights reserved. All games are property of their respective owners. <a href="https://funnygame.lol/" class="text-apple-blue">funnygame.lol</a></p>
+                <p class="text-sm text-gray-400">
+                    &copy; <script>document.write(new Date().getFullYear());</script> FunnyGame.lol. All rights reserved. All games are property of their respective owners.
+                </p>
+                <p class="text-xs text-gray-500 mt-2">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a> &bull;
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a> &bull;
+                    <a href="#" class="hover:text-white transition-colors">Cookie Policy</a>
+                </p>
             </div>
         </div>
     </footer>
 
-    <!-- Simple JavaScript for smooth scrolling -->
+    <!-- Back to top button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-apple-blue text-white rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Lightbox HTML -->
+    <div class="lightbox" id="imageLightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <span class="lightbox-close" onclick="closeLightbox()">
+                <i class="fas fa-times"></i>
+            </span>
+            <img src="" alt="" class="lightbox-image" id="lightboxImage">
+        </div>
+    </div>
+
+    <!-- JavaScript for functionality and interactivity -->
     <script>
+        // Initialize AOS (Animate On Scroll)
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                once: true, // Whether animation should happen only once
+                mirror: false, // Whether elements should animate out while scrolling past them
+                duration: 800, // Duration of animation
+                delay: 0, // Delay before animation starts
+            });
+            
+            // Initialize other components
+            initializeCarousel();
+            initializeFAQ();
+            initializeMobileMenu();
+            initializeBackToTop();
+            initializeLazyLoading();
+        });
+        
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Close mobile menu if open
+                    closeMobileMenu();
+                    
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, // Adjust for header height
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
-    </script>
-    
-    <!-- Lightbox HTML -->
-    <div class="lightbox" id="imageLightbox" onclick="closeLightbox()">
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-            <img src="" alt="" class="lightbox-image" id="lightboxImage">
-        </div>
-    </div>
-    
-    <!-- Lightbox JavaScript -->
-    <script>
-        // 打开Lightbox
+        
+        // Lightbox functionality
         function openLightbox(src, alt) {
             const lightbox = document.getElementById('imageLightbox');
             const lightboxImage = document.getElementById('lightboxImage');
@@ -1273,48 +1518,52 @@
             lightboxImage.alt = alt;
             lightbox.classList.add('active');
             
-            // 阻止页面滚动
+            // Prevent page scrolling
             document.body.style.overflow = 'hidden';
         }
         
-        // 关闭Lightbox
         function closeLightbox() {
             const lightbox = document.getElementById('imageLightbox');
             lightbox.classList.remove('active');
             
-            // 恢复页面滚动
+            // Restore page scrolling
             document.body.style.overflow = '';
         }
         
-        // 按ESC键关闭Lightbox
+        // Close lightbox with ESC key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeLightbox();
             }
         });
-    </script>
-    
-    <!-- 评论轮播JavaScript -->
-    <script>
-        let currentSlide = 0;
-        const totalSlides = 5;
-        const carouselInner = document.querySelector('.review-carousel-inner');
-        const indicators = document.querySelectorAll('.carousel-indicator');
         
-        // 初始化轮播
-        function initCarousel() {
+        // Review carousel functionality
+        let currentSlide = 0;
+        const totalSlides = 5; // Update this if you change the number of slides
+        let carouselInner, indicators, prevButton, nextButton;
+        
+        function initializeCarousel() {
+            carouselInner = document.querySelector('.review-carousel-inner');
+            indicators = document.querySelectorAll('.carousel-indicator');
+            prevButton = document.querySelector('.carousel-control.prev');
+            nextButton = document.querySelector('.carousel-control.next');
+            
             updateCarousel();
-            // 设置自动轮播
-            setInterval(() => {
-                moveCarousel(1);
-            }, 5000); // 每5秒切换一次
+            
+            // Set up event listeners for navigation
+            if (prevButton) prevButton.addEventListener('click', () => moveCarousel(-1));
+            if (nextButton) nextButton.addEventListener('click', () => moveCarousel(1));
+            
+            // Set auto-rotation
+            setInterval(() => moveCarousel(1), 7000); // Change slide every 7 seconds
         }
         
-        // 更新轮播显示
         function updateCarousel() {
+            if (!carouselInner) return;
+            
             carouselInner.style.transform = `translateX(-${currentSlide * 100}%)`;
             
-            // 更新指示器状态
+            // Update indicators
             indicators.forEach((indicator, index) => {
                 if (index === currentSlide) {
                     indicator.classList.add('active');
@@ -1324,39 +1573,156 @@
             });
         }
         
-        // 移动轮播
         function moveCarousel(direction) {
             currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
             updateCarousel();
         }
         
-        // 跳转到指定幻灯片
         function goToSlide(slideIndex) {
             currentSlide = slideIndex;
             updateCarousel();
         }
         
-        // 页面加载完成后初始化轮播
-        document.addEventListener('DOMContentLoaded', initCarousel);
-    </script>
-    
-    <!-- Add social sharing script -->
-    <script>
-        // Facebook sharing
+        // FAQ accordion functionality
+        function initializeFAQ() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('.faq-icon');
+                    
+                    // Toggle answer visibility
+                    answer.classList.toggle('show');
+                    icon.classList.toggle('rotate-180');
+                    
+                    // Close other open questions
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== question) {
+                            const otherAnswer = otherQuestion.nextElementSibling;
+                            const otherIcon = otherQuestion.querySelector('.faq-icon');
+                            
+                            otherAnswer.classList.remove('show');
+                            otherIcon.classList.remove('rotate-180');
+                        }
+                    });
+                });
+            });
+        }
+        
+        // Mobile menu functionality
+        function initializeMobileMenu() {
+            const mobileMenuButton = document.getElementById('openMobileMenu');
+            const closeMobileMenuButton = document.getElementById('closeMobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuLinks = document.querySelectorAll('#mobileMenu a[href^="#"]');
+            
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', openMobileMenu);
+            }
+            
+            if (closeMobileMenuButton) {
+                closeMobileMenuButton.addEventListener('click', closeMobileMenu);
+            }
+            
+            if (menuOverlay) {
+                menuOverlay.addEventListener('click', closeMobileMenu);
+            }
+            
+            // Close menu when a link is clicked
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+        }
+        
+        function openMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            if (mobileMenu && menuOverlay) {
+                mobileMenu.classList.add('open');
+                menuOverlay.classList.add('open');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }
+        }
+        
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            if (mobileMenu && menuOverlay) {
+                mobileMenu.classList.remove('open');
+                menuOverlay.classList.remove('open');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        }
+        
+        // Back to top button functionality
+        function initializeBackToTop() {
+            const backToTopButton = document.getElementById('backToTop');
+            
+            if (!backToTopButton) return;
+            
+            // Show/hide button based on scroll position
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.remove('opacity-0', 'invisible');
+                    backToTopButton.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopButton.classList.remove('opacity-100', 'visible');
+                    backToTopButton.classList.add('opacity-0', 'invisible');
+                }
+            });
+            
+            // Scroll to top when clicked
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+        
+        // Lazy loading for images
+        function initializeLazyLoading() {
+            const lazyImages = document.querySelectorAll('.lazy-image');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.classList.add('loaded');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(img => {
+                    imageObserver.observe(img);
+                });
+            } else {
+                // Fallback for browsers without IntersectionObserver
+                lazyImages.forEach(img => {
+                    img.classList.add('loaded');
+                });
+            }
+        }
+        
+        // Social sharing functionality
         function shareOnFacebook() {
             const url = encodeURIComponent(window.location.href);
             const title = encodeURIComponent("Play ZOO BOOM - Fun Animal Matching Puzzle Game!");
             window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
         }
         
-        // Twitter sharing
         function shareOnTwitter() {
             const url = encodeURIComponent(window.location.href);
             const text = encodeURIComponent("Check out ZOO BOOM - an addictive animal matching puzzle game that's perfect for all ages! #ZooBoom #PuzzleGame");
             window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=600,height=400');
         }
         
-        // Pinterest sharing
         function shareOnPinterest() {
             const url = encodeURIComponent(window.location.href);
             const description = encodeURIComponent("ZOO BOOM - Fun Animal Matching Puzzle Game");
@@ -1365,48 +1731,11 @@
             window.open(`https://pinterest.com/pin/create/button/?url=${url}&media=${media}&description=${description}`, '_blank', 'width=600,height=400');
         }
         
-        // Email sharing
         function shareViaEmail() {
             const subject = encodeURIComponent("Check out this fun game: ZOO BOOM");
             const body = encodeURIComponent("I found this awesome game called ZOO BOOM that I think you'll love! It's a colorful animal matching puzzle game.\n\nPlay it here: " + window.location.href);
             window.location.href = `mailto:?subject=${subject}&body=${body}`;
         }
-    </script>
-
-    <!-- Add FAQ JavaScript -->
-    <script>
-        // Initialize FAQ functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const faqQuestions = document.querySelectorAll('.faq-question');
-            
-            faqQuestions.forEach(question => {
-                question.addEventListener('click', function() {
-                    // Toggle answer visibility
-                    const answer = this.nextElementSibling;
-                    answer.classList.toggle('hidden');
-                    
-                    // Toggle icon rotation
-                    const icon = this.querySelector('.faq-icon');
-                    icon.classList.toggle('rotate-180');
-                    
-                    // Close other open questions (optional, comment out if you want multiple answers open)
-                    const allAnswers = document.querySelectorAll('.faq-answer');
-                    const allIcons = document.querySelectorAll('.faq-icon');
-                    
-                    allAnswers.forEach(item => {
-                        if (item !== answer && !item.classList.contains('hidden')) {
-                            item.classList.add('hidden');
-                        }
-                    });
-                    
-                    allIcons.forEach(item => {
-                        if (item !== icon && item.classList.contains('rotate-180')) {
-                            item.classList.remove('rotate-180');
-                        }
-                    });
-                });
-            });
-        });
     </script>
 </body>
 </html> 
